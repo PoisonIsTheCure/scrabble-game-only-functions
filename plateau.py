@@ -2,7 +2,7 @@ def init_bonus():
     pass
 
 def init_jetons():
-    pass
+    print("Hello World!")
 
 def affiche_jetons(j):
     pass
