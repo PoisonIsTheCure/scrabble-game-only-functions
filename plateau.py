@@ -1,8 +1,19 @@
-def init_bonus():
-    pass
+#Première partie du programme
 
-def init_jetons():
-    print("Hello World!")
+class Plateau(object):
+    """docstring for Plateau."""
 
-def affiche_jetons(j):
-    pass
+    def __init__(self):
+        super(Plateau, self).__init__()
+        self.plateau = [["   " for i in range(15)] for j in range(15)] #Création du plateau avec des espaces
+
+
+    def init_bonus(self):
+        lbonus = ['MT','MD','LT','LD','']
+        return lbonus
+
+    def init_jetons(self):
+        print("Hello World!")
+
+    def affiche_jetons(self,j):
+        pass
