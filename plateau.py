@@ -18,102 +18,63 @@ def init_jetons():
         for j in range(15):
             ligne.append("   ")
         lplateau.append(ligne)
-    return lplateau
-
-def init_jetons():
-    lplateau = []
-    for i in range(15):
-        ligne = []
-        for j in range(15):
-            ligne.append("   ")
-        lplateau.append(ligne)
-    return lplateau
-
-def affiche_jetons(j):
-    lplateau[j[0]][j[1]]="j"
     for i in range(len(cases_MT)):
         a=cases_MT[i]
-        lplateau[a[0]][a[1]]="MT"
-    for i in range(len(cases_LD)):
-        a=cases_LD[i]
-        lplateau[a[0]][a[1]]="LD"
-    for i in range(len(cases_LT)):
-        a=cases_LT[i]
-        lplateau[a[0]][a[1]]="LT"
+        lplateau[a[0]][a[1]]="***"
     for i in range(len(cases_MD)):
         a=cases_MD[i]
-        lplateau[a[0]][a[1]]="MD"
-
+        lplateau[a[0]][a[1]]="** "
+    for i in range(len(cases_LT)):
+        a=cases_LT[i]
+        lplateau[a[0]][a[1]]="---"
+    for i in range(len(cases_LD)):
+        a=cases_LD[i]
+        lplateau[a[0]][a[1]]="-- "
     return lplateau
+
+def veril(i): #verifie que la longueur du chaine du caractère est coherant , à utiliser our chaque string
+    if len(i) != 3 :
+        if i == 1:
+            i = ' '+str(i.upper)+' '
+        elif i == 2:
+            i = str(i.upper())+' '
+    else:
+        i = i.upper()
+    return i
+
+def affiche_jetons(j):
+    lettre = "j"
+    #j'ai changer la place de bonus (deplacer vers init_jetons()) affichee car elle n'étaient pad demandés dans la consigne
+    #on considera même d'enlever les mot MT , MD , LT , LD pour diminuer le confusion
+    #il n'est pas bien déterminer le but de cette fonction
+    pos = [j[0],j[1]]
+    if pos in cases_MT :
+        lplateau[j[0]][j[1]]= veril(f"*{lettre}*")
+    elif pos in cases_MD :
+        lplateau[j[0]][j[1]]= veril(f" {lettre}*")
+    elif pos in cases_LT :
+        lplateau[j[0]][j[1]]= veril(f"-{lettre}-")
+    elif pos in cases_LD :
+        lplateau[j[0]][j[1]]= veril(f" {lettre}-")
+    else:
+        lplateau[j[0]][j[1]]= veril(lettre)
+    #J'ai changer la methode d'affichage des bonus pour qu'ils soient mieux lisibles
+    return lplateau
+
 
 def cree_plateau(lplateau):
     for l in range(len(lplateau)):
         unligne = ''
         for i in lplateau[l]:
-            unligne += " | "+" | ".join(i)
+            unligne += i
         print(unligne)
 
 
-lplateau= init_jetons()
-affiche_jetons([0,5])
+
+
+
+
+lplateau = init_jetons()
+affiche_jetons([0,0])
+affiche_jetons([7,7])
 cree_plateau(lplateau)
-
-"""
-for i in range(15):
-    for j in range(15):
-        print(lplateau[i][j],end=" ")
-    print()
-"""
-"""""
-def init_jetons():
-    lplateau = []
-    for i in range(15):
-        ligne = []
-        for j in range(15):
-            ligne.append("A")
-        lplateau.append(ligne)
-    return lplateau
-
-def affiche_jetons(j):
-    lplateau[j[0]][j[1]]="j"
-    for i in range(len(cases_MT)):
-        a=cases_MT[i]
-        lplateau[a[0]][a[1]]="MT"
-    for i in range(len(cases_LD)):
-        a=cases_LD[i]
-        lplateau[a[0]][a[1]]="LD"
-    for i in range(len(cases_LT)):
-        a=cases_LT[i]
-        lplateau[a[0]][a[1]]="LT"
-    for i in range(len(cases_MD)):
-        a=cases_MD[i]
-        lplateau[a[0]][a[1]]="MD"
-
-    return lplateau
-
-
-lplateau= init_jetons()
-print(affiche_jetons([0,5]))
-
-def affiche_jetons(j,i):
-    lplateau[i[0]][i[1]] = j
-    return lplateau
-
-def affiche_bonus(lbonus):
-    for i in range(len(lbonus[0])):
-        print("f")
-        pos = [0,i]
-        lplateau = affiche_jetons("MT",pos)
-    for i in range(len(lbonus[1])):
-        print(i)
-        pos = [1,i]
-        lplateau = affiche_jetons("MD",pos)
-    for i in range(len(lbonus[2])):
-        print(i)
-        pos = [2,i]
-        lplateau = affiche_jetons("LT",pos)
-    for i in range(len(lbonus[3])):
-        pos = [3,i]
-        lplateau = affiche_jetons("LD",pos)
-    return lplateau
-"""""
