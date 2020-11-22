@@ -33,13 +33,13 @@ def init_jetons():
     return lplateau
 
 def veril(i): #verifie que la longueur du chaine du caractère est coherant , à utiliser our chaque string
-    if len(i) != 3 :
-        if i == 1:
-            i = ' '+str(i.upper)+' '
-        elif i == 2:
-            i = str(i.upper())+' '
+    if len(str(i)) != 3 :
+        if len(str(i)) == 1:
+            i = ' '+str(i).upper()+' '
+        elif len(str(i)) == 2:
+            i = str(i).upper()+' '
     else:
-        i = i.upper()
+        i = str(i).upper()
     return i
 
 def affiche_jetons(j):
@@ -63,11 +63,19 @@ def affiche_jetons(j):
 
 
 def cree_plateau(lplateau):
+    largeur = len(lplateau[0])*len(lplateau[0][0]) + len(plateau[0])+ 5
+    column_liste = [veril(i) for i in range(len(lplateau[0]))]
+    separe = "".join(["~" for i in range(largeur)])
+    haut = "   §"+ "|".join(column_liste) + "§"
+    print(haut)
+    print(separe)
     for l in range(len(lplateau)):
-        unligne = ''
-        for i in lplateau[l]:
-            unligne += i
-        print(unligne)
+        if l < 10:
+            unligne = "|".join(lplateau[l])
+            print(f" {l} §{unligne}§")
+        elif l >= 10 :
+            unligne = "|".join(lplateau[l])
+            print(f"{l} §{unligne}§")
 
 
 
