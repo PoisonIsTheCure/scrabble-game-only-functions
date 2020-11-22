@@ -77,11 +77,6 @@ def cree_plateau(lplateau):
             unligne = "|".join(lplateau[l])
             print(f"{l} §{unligne}§")
 
-
-
-
-
-
 lplateau = init_jetons()
 affiche_jetons([0,0])
 affiche_jetons([7,7])
