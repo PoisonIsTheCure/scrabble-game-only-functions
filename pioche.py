@@ -73,24 +73,43 @@ def echanger(jetons ,main, sac):
         sac.extend(jetons)
         main.extend(nouveau)
     else:
-        if not(existe):
-            print("Jetons non disponibles dans la main!")
-        if not(sacsuff):
-            print("Sac insuffisant!")
         if not(existe) and not(sacsuff):
             print("Jetons non disponibles dans la main et sac insuffisant!")
+        elif not(existe):
+            print("Jetons non disponibles dans la main!")
+        elif not(sacsuff):
+            print("Sac insuffisant!")
+#6
+def cree_joueurs(nb, sac):
+    """
+    creation du es joueurs avec un paramètre (nombre des joueurs),
+    demande le nom des joueurs, 
+    renvoie un dictionnaire contenant les noms des joueurs comme cles
+    chaque cle contient les lettre du pioche du joueurs 
+    """
+    joueurs = {}
+    for i in range(nb):
+        name = input(f"Quelle est le nom de joueur numéro {i+1} : ")
+        main = piocher(7,sac)
+        joueurs[name]= main
+    return joueurs
+
 
 #sac=init_pioche(init_dico())
-sac = ['R','D']
+sac = init_pioche(init_dico())
 print(len(sac))
+print(sac)
 #main = piocher(7,sac)
-main=['A','C']
-jetons = ['A','C']
-print(echanger(jetons,main,sac))
+#main=['A','C']
+#jetons = ['A','D']
+#echanger(jetons,main,sac)
+joueurs = cree_joueurs(2,sac)
+print(joueurs)
+print(sac)
 print(len(sac))
 
 
-
+#Tous les fonction on étaient testés et tout va bien
 
 """
 def echanger(jetons,main,sac):
