@@ -7,7 +7,7 @@ def generer_dico(nf):
     fichier = open(nf,"r")
     dictionnaire = []
     for ligne in fichier:
-        mot = ligne[:-2]
+        mot = ligne[:-1]
         dictionnaire.append(mot)
     return dictionnaire
 
@@ -48,9 +48,10 @@ def mots_jouables(motsfr, ll):
 
 '''
 #SCRIPT TEST POUR PARTIE 4
-ll = ['A',"H","F","M","L","G","L","A","J","O","U","I"]
+ll = ['A',"H","F","W","A","G","L","D","J","A","Z","I"]
 f = 'littre.txt'
 dictio = generer_dico(f)
+print(dictio[0:30])
 print(mots_jouables(dictio, ll))
 '''
 # TOUT LES FONCTIONS AU DESSUS ON ETAIENT TESTÉE
