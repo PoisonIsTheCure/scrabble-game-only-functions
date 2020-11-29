@@ -34,3 +34,10 @@ def get_valeur(lettre,dico):
         valeur = dico[key]["val"]
     return valeur
 print(get_valeur('a',dico))
+
+
+'''
+les variables global:
+==>lplateau pour definir lr plateau dont on travail
+==>dico pour definir la liste des dictionnaires 
+'''

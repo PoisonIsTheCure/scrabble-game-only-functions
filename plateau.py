@@ -60,6 +60,16 @@ def affiche_jetons(j):
         lplateau[j[0]][j[1]]= veril(lettre)
     #J'ai changer la methode d'affichage des bonus pour qu'ils soient mieux lisibles
     return lplateau
+'''
+def affiche_jetons(j):
+    ligne = j[0]
+    colonne = j[1]
+    lettre = lplateau[ligne][colonne]
+    newstr = lettre.replace(' ','')
+    thenewstr = newstr.replace('*','')
+    recentstr = thenewstr.replace('-','')
+    return recentstr
+'''
 
 
 def cree_plateau(lplateau):
@@ -78,6 +88,7 @@ def cree_plateau(lplateau):
             print(f"{l} §{unligne}§")
 
 lplateau = init_jetons()
-affiche_jetons([0,0])
-affiche_jetons([7,7])
+lplateau[0][0] = ' J*'
+print(affiche_jetons([0,0]))
+print(affiche_jetons([7,7]))
 cree_plateau(lplateau)

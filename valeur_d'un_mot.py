@@ -4,7 +4,7 @@ def valeur_mot(mot,dico):
     somme=0
     if len(mot)==7:
         somme=50
-    for i in range (len(mot)):
+    for i in range(len(mot)):
        if mot[i] in dico.keys():
             valeur=dico[mot[i]]["val"]
             somme +=valeur

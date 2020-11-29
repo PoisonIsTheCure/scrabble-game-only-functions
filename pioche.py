@@ -83,9 +83,9 @@ def echanger(jetons ,main, sac):
 def cree_joueurs(nb, sac):
     """
     creation du es joueurs avec un paramètre (nombre des joueurs),
-    demande le nom des joueurs, 
+    demande le nom des joueurs,
     renvoie un dictionnaire contenant les noms des joueurs comme cles
-    chaque cle contient les lettre du pioche du joueurs 
+    chaque cle contient les lettre du pioche du joueurs
     """
     joueurs = {}
     for i in range(nb):
@@ -94,7 +94,7 @@ def cree_joueurs(nb, sac):
         joueurs[name]= main
     return joueurs
 
-
+'''
 #sac=init_pioche(init_dico())
 sac = init_pioche(init_dico())
 print(len(sac))
@@ -107,7 +107,7 @@ joueurs = cree_joueurs(2,sac)
 print(joueurs)
 print(sac)
 print(len(sac))
-
+'''
 
 #Tous les fonction on étaient testés et tout va bien
 
