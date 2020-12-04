@@ -39,5 +39,6 @@ print(get_valeur('a',dico))
 '''
 les variables global:
 ==>lplateau pour definir lr plateau dont on travail
-==>dico pour definir la liste des dictionnaires 
+==>dico pour definir la liste des dictionnaires
+==> dirbool = True si horizental, et dirbool = False if vertical
 '''
