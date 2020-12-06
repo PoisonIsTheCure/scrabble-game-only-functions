@@ -72,6 +72,7 @@ def echanger(jetons ,main, sac):
         nouveau = piocher(len(jetons), sac)
         sac.extend(jetons)
         main.extend(nouveau)
+        return True
     else:
         if not(existe) and not(sacsuff):
             print("Jetons non disponibles dans la main et sac insuffisant!")
@@ -79,6 +80,7 @@ def echanger(jetons ,main, sac):
             print("Jetons non disponibles dans la main!")
         elif not(sacsuff):
             print("Sac insuffisant!")
+        return False
 #6
 def cree_joueurs(nb, sac):
     """

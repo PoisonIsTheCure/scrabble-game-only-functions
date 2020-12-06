@@ -52,12 +52,17 @@ def tester_placement(plateau,i,j,dir,mot):
                 continue
             else:
                 acceptee = False
+    print(plateau)
     print(motexistant)
-    return lmot
-"""
+    if acceptee:
+        return lmot
+    else:
+        return []
+
 lplateau[7][7] = " A*"
 lplateau[8][7] = "*M*"
 lplateau[11][7] = "-E-"
 print(tester_placement(lplateau,7,7,'v','AMINE'))
-"""
+
 #3
+def placer_mot(plateau,lm,mot,i,j,dir):
