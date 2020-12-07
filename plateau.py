@@ -1,6 +1,6 @@
 #Première partie du programme
 
-plateau = [["   " for i in range(15)] for j in range(15)] #Création du plateau avec des espaces
+#plateau = [["   " for i in range(15)] for j in range(15)] #Création du plateau avec des espaces
 
 cases_MT = [[0,0],[0,7],[0,14],[7,0],[7,14],[14,0],[14,7],[14,14]]
 cases_MD = [[1,1],[1,13],[2,2],[2,12],[3,3],[3,11],[4,4],[4,10],[7,7],[10,4],[10,10],[11,3],[11,11],[12,2],[12,12],[13,1],[13,13]]
@@ -42,8 +42,8 @@ def veril(i): #verifie que la longueur du chaine du caractère est coherant , à
         i = str(i).upper()
     return i
 
-def affiche_jetons(j):
-    lettre = "j"
+def affiche_jetons(j,jeton,lplateau):
+    lettre = jeton
     #j'ai changer la place de bonus (deplacer vers init_jetons()) affichee car elle n'étaient pad demandés dans la consigne
     #on considera même d'enlever les mot MT , MD , LT , LD pour diminuer le confusion
     #il n'est pas bien déterminer le but de cette fonction
@@ -73,7 +73,7 @@ def affiche_jetons(j):
 
 
 def cree_plateau(lplateau):
-    largeur = len(lplateau[0])*len(lplateau[0][0]) + len(plateau[0])+ 5
+    largeur = len(lplateau[0])*len(lplateau[0][0]) + len(lplateau[0])+ 5
     column_liste = [veril(i) for i in range(len(lplateau[0]))]
     separe = "".join(["~" for i in range(largeur)])
     haut = "   §"+ "|".join(column_liste) + "§"
@@ -87,6 +87,20 @@ def cree_plateau(lplateau):
             unligne = "|".join(lplateau[l])
             print(f"{l} §{unligne}§")
 
+def affiche_plateau(lplateau):
+    largeur = len(lplateau[0])*len(lplateau[0][0]) + len(lplateau[0])+ 5
+    column_liste = [veril(i) for i in range(len(lplateau[0]))]
+    separe = "".join(["~" for i in range(largeur)])
+    haut = "   §"+ "|".join(column_liste) + "§"
+    print(haut)
+    print(separe)
+    for l in range(len(lplateau)):
+        if l < 10:
+            unligne = "|".join(lplateau[l])
+            print(f" {l} §{unligne}§")
+        elif l >= 10 :
+            unligne = "|".join(lplateau[l])
+            print(f"{l} §{unligne}§")
 """
 lplateau = init_jetons()
 lplateau[0][0] = ' J*'
