@@ -104,7 +104,7 @@ def affiche_plateau(lplateau):
 """
 lplateau = init_jetons()
 lplateau[0][0] = ' J*'
-print(affiche_jetons([0,0]))
-print(affiche_jetons([7,7]))
+#print(affiche_jetons([0,0]))
+#print(affiche_jetons([7,7]))
 cree_plateau(lplateau)
 """
