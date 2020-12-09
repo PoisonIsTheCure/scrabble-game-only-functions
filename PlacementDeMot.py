@@ -73,6 +73,7 @@ def placer_mot(plateau,lm,mot,i,j,dir):
                 lettre = lire_lettre(y,x,plateau)
                 if len(lettre) == 0 :
                     jeton = liste_lettres[let_util]
+                    lm.remove(jeton)
                     j = [y,x]
                     affiche_jetons(j,jeton,plateau)
                     let_util += 1
@@ -82,17 +83,20 @@ def placer_mot(plateau,lm,mot,i,j,dir):
                 lettre = lire_lettre(y,x,plateau)
                 if len(lettre) == 0 :
                     jeton = liste_lettres[let_util]
+                    lm.remove(jeton)
                     j = [y,x]
                     affiche_jetons(j,jeton,plateau)
                     let_util += 1
                 y+=1
         return True
     return False
+'''
 lm= ['I','N','A','M','E','K']
 lplateau[7][7] = " A*"
 lplateau[8][7] = "*M*"
 lplateau[11][7] = "-E-"
 #print(tester_placement(lplateau,7,7,'v','AMINE'))
-print(placer_mot(lplateau,lm,'AMINE',7,11,'h'))
+print(placer_mot(lplateau,lm,'AMINE',9,7,'h'))
 affiche_plateau(lplateau)
 print(lm)
+'''
