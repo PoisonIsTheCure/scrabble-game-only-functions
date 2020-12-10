@@ -84,19 +84,23 @@ def echanger(jetons ,main, sac):
             print("Sac insuffisant!")
         return False
 #6
-def cree_joueurs(nb, sac):
+def cree_joueurs(i,sac):
     """
     creation du es joueurs avec un paramètre (nombre des joueurs),
     demande le nom des joueurs,
     renvoie un dictionnaire contenant les noms des joueurs comme cles
     chaque cle contient les lettre du pioche du joueurs
     """
-    joueurs = {}
-    for i in range(nb):
-        name = input(f"Quelle est le nom de joueur numéro {i+1} : ")
-        main = piocher(7,sac)
-        joueurs[name]= main
-    return joueurs
+    joueur = {}
+    nb_joueur = i+1
+    name = input(f"Quelle est le nom de joueur numéro ({nb_joueur}) : ")
+    main = piocher(7,sac)
+    score = 0
+    joueur["nom"]= name
+    joueur["score"]= score
+    joueur["main"]= main
+    joueur["tour"] = False
+    return joueur
 
 '''
 #sac=init_pioche(init_dico())

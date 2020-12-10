@@ -47,3 +47,39 @@ les variables global:
 je vais crée un dictionnaire registre ou il y a tout les nom et les valeur des joueur
 exemple : registre = {'ali':{'main':['A','C','D','H','I','K','L'] , 'score': 50}}
 """
+
+"""
+Légende:
+Case des mots triples : "***" , lettre en case d'un mot triple : "*A*"
+Case des mots doubles : " **" , lettre en case d'un mot double : " A*"
+Case des lettres triples : "---" , lettre en case d'une lettre triple : "-A-"
+Case des lettres doubles : " --" , lettre en case d'une lettre double : " A-"
+"""
+
+'''
+def affiche_jetons(j):
+    ligne = j[0]
+    colonne = j[1]
+    lettre = lplateau[ligne][colonne]
+    newstr = lettre.replace(' ','')
+    thenewstr = newstr.replace('*','')
+    recentstr = thenewstr.replace('-','')
+    return recentstr
+'''
+
+'''
+def cree_plateau(lplateau):
+    largeur = len(lplateau[0])*len(lplateau[0][0]) + len(lplateau[0])+ 5
+    column_liste = [veril(i) for i in range(len(lplateau[0]))]
+    separe = "".join(["~" for i in range(largeur)])
+    haut = "   §"+ "|".join(column_liste) + "§"
+    print(haut)
+    print(separe)
+    for l in range(len(lplateau)):
+        if l < 10:
+            unligne = "|".join(lplateau[l])
+            print(f" {l} §{unligne}§")
+        elif l >= 10 :
+            unligne = "|".join(lplateau[l])
+            print(f"{l} §{unligne}§")
+'''

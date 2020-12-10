@@ -36,7 +36,7 @@ def tour_joueur(lplateau , sac , main, nom):
     affiche_plateau(lplateau)
     print("Les lettres dans votre main sont : ",main)
     Q1=input("passer (s), echanger (e), placer (p) ? ")
-    if Q1.lower() == ("echange" or "e"):
+    if (Q1.lower() == "echange") or "e":
         while True:
             jetons_list=[]
             jetons = input("Ecrivez les jetons que vous souhaitez les echanger\nseparez les par des virgules : ")
@@ -48,7 +48,7 @@ def tour_joueur(lplateau , sac , main, nom):
             if echange : break
         print(main)
         #la partie echange est bien vérifier
-    elif Q1.lower()== ("placer" or "p"):
+    elif (Q1.lower()== "placer") or "p":
         while True:
             coords = pdm.lire_coords()
             ligne = coords[0]
@@ -61,7 +61,7 @@ def tour_joueur(lplateau , sac , main, nom):
             if placer : break
             print(placer)
         #partie placer verifier
-    elif Q1.lower()== ("passer" or "s"):
+    elif (Q1.lower()== "passer") or "s":
         pass
 
 #fonction qui détecte la fin de la partie
@@ -78,3 +78,19 @@ def fin_partie(sac,lm):
             return False
         else:
             return True
+
+def tour_joueur(registre):
+    tous_false = True
+    for i in range(len(registre.keys())):
+        statut = registre[i]["tour"]
+        if statut == False:
+            pass
+        elif statut == True:
+            div = len(registre.keys())-1 #return len of registre -1
+            registre[i]["tour"] = False
+            nouv = 0 if i == div else i+1
+            registre[nouv]["tour"] = True
+            return i
+    if tous_false:
+        registre[1]["tour"] = True
+        return 0
