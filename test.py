@@ -42,3 +42,8 @@ les variables global:
 ==>dico pour definir la liste des dictionnaires
 ==> dirbool = True si horizental, et dirbool = False if vertical
 '''
+
+"""
+je vais crée un dictionnaire registre ou il y a tout les nom et les valeur des joueur
+exemple : registre = {'ali':{'main':['A','C','D','H','I','K','L'] , 'score': 50}}
+"""

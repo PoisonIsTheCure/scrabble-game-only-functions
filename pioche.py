@@ -72,6 +72,8 @@ def echanger(jetons ,main, sac):
         nouveau = piocher(len(jetons), sac)
         sac.extend(jetons)
         main.extend(nouveau)
+        for elt in jetons:
+            main.remove(elt)
         return True
     else:
         if not(existe) and not(sacsuff):

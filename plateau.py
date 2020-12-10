@@ -95,16 +95,39 @@ def affiche_plateau(lplateau):
     print(haut)
     print(separe)
     for l in range(len(lplateau)):
-        if l < 10:
+        if l == 0:
+            unligne = "|".join(lplateau[l])
+            print(f" {l} §{unligne}§    Légende:")
+        elif l == 1:
+            unligne = "|".join(lplateau[l])
+            print(f""" {l} §{unligne}§    Case des mots triples : "***" , lettre en case d'un mot triple : "*A*" """)
+        elif l == 2:
+            unligne = "|".join(lplateau[l])
+            print(f""" {l} §{unligne}§    Case des mots doubles : "** " , lettre en case d'un mot double : "A* " """)
+        elif l == 3:
+            unligne = "|".join(lplateau[l])
+            print(f""" {l} §{unligne}§    Case des lettres triples : "---" , lettre en case d'une lettre triple : "-A-" """)
+        elif l == 4:
+            unligne = "|".join(lplateau[l])
+            print(f""" {l} §{unligne}§    Case des lettres doubles : "-- " , lettre en case d'une lettre double : "A- " """)
+        elif l < 10:
             unligne = "|".join(lplateau[l])
             print(f" {l} §{unligne}§")
         elif l >= 10 :
             unligne = "|".join(lplateau[l])
             print(f"{l} §{unligne}§")
+
 """
+Légende:
+Case des mots triples : "***" , lettre en case d'un mot triple : "*A*"
+Case des mots doubles : " **" , lettre en case d'un mot double : " A*"
+Case des lettres triples : "---" , lettre en case d'une lettre triple : "-A-"
+Case des lettres doubles : " --" , lettre en case d'une lettre double : " A-"
+"""
+
 lplateau = init_jetons()
 lplateau[0][0] = ' J*'
 #print(affiche_jetons([0,0]))
 #print(affiche_jetons([7,7]))
-cree_plateau(lplateau)
-"""
+affiche_plateau(lplateau)
+
