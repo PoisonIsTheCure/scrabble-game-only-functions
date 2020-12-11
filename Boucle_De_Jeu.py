@@ -28,11 +28,15 @@ def tour_joueur(lplateau , sac , main):
         pass
 #print(tour_joueur())
 """
+def DemanderDirection():
+    while True:
+        dir = input("direction vertical (v) ou horizontal (h) ? : ")
+        if dir == 'vertical' : dir = 'v'
+        if dir == 'horizontal': dir = 'h'
+        if dir in ('j','h') : break
+    return dir
+
 def tour_joueur(lplateau , sac , main, nom):
-    #list_plateau=plt.init_jetons()
-    #lplateau=plt.affiche_plateau(list_plateau)
-    #sac=pio.init_pioche(pio.init_dico())
-    #main=pio.piocher(7,sac)
     plt.affiche_plateau(lplateau)
     print(f"C'est le tour de {nom} :")
     print("Les lettres dans votre main sont : ",main)
@@ -45,11 +49,9 @@ def tour_joueur(lplateau , sac , main, nom):
             jetons = jetons.upper()
             jetonsf = jetons.replace(' ','')
             jetons_list = jetonsf.split(",")
-            #echange = pio.echanger(jetons_list,main,sac)
             echange = pio.echanger(jetons_list,main,sac)
             if echange : break
         print(main)
-        #la partie echange est bien vérifier
     elif Q1 in ("placer" , "p"):
         while True:
             coords = pdm.lire_coords()
@@ -57,13 +59,10 @@ def tour_joueur(lplateau , sac , main, nom):
             colone = coords[1]
             mot = input("Quelle mot voulez vous placer : ")
             mot = mot.upper()
-            dir = input("direction vertical (v) ou horizontal (h) ? : ")
-            if dir == 'vertical' : dir = 'v'
-            if dir == 'horizontal': dir = 'h'
+            dir = DemanderDirection()
             placer = pdm.placer_mot(lplateau,main,mot,colone,ligne,dir)
             if placer : break
             print("valeur retourner par placer en tour_joueur: ",placer)
-        #partie placer verifier
     elif Q1 in ("passer" , "s"):
         pass
 
@@ -77,10 +76,7 @@ def fin_partie(sac,lm):
         return False
     else:
         besoin = 7 - len(lm)
-        if besoin > len(sac):
-            return True
-        else:
-            return False
+        return besoin > len(sac)
 
 def detect_tour(registre):
     tous_false = True

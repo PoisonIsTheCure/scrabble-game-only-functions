@@ -48,6 +48,7 @@ def lire_mot(plateau,x,y,mot,dirbool): #i c'
 #ajouté par moi
 def verifie_mot(mot,lmotexistant):
     mot.upper()
+    print("LMOTEXISTANT dans verifie_mot : ",lmotexistant)
     lmot = list(mot)
     lmot.extend(lmotexistant)
     dict_fr = cdm.generer_dico()
@@ -91,10 +92,17 @@ def verifie_main(main,liste_lettres):
             return False
     return True
 
+def EnleverLesJetonsDeLaMain(jeton, lm):
+    if not(jeton in lm): #modifications pour pouvoir enlever "?"
+        if '?' in lm:
+            lm.remove("?")
+    else:
+        lm.remove(jeton)
+
 def placer_mot(plateau,lm,mot,i,j,dir):
     x = i
     y = j
-    liste_lettres = tester_placement(plateau,x,y,dir,mot)
+    liste_lettres = tester_placement(plateau,x,y,dir,mot) # liste_lettres contient les lettres dont on est besoin
     print("valeur retourner par liste lettres en placer_mot: ",liste_lettres)
     mot_valide = verifie_mot(mot,liste_lettres)
     verifier_main = verifie_main(lm,liste_lettres) 
@@ -107,7 +115,7 @@ def placer_mot(plateau,lm,mot,i,j,dir):
                     lettre = lire_lettre(y,x,plateau)
                     if len(lettre) == 0 :
                         jeton = liste_lettres[let_util]
-                        lm.remove(jeton)
+                        EnleverLesJetonsDeLaMain(jeton, lm)
                         j = [y,x]
                         affiche_jetons(j,jeton,plateau)
                         let_util += 1
@@ -117,7 +125,7 @@ def placer_mot(plateau,lm,mot,i,j,dir):
                     lettre = lire_lettre(y,x,plateau)
                     if len(lettre) == 0 :
                         jeton = liste_lettres[let_util]
-                        lm.remove(jeton)
+                        EnleverLesJetonsDeLaMain(jeton, lm)
                         j = [y,x]
                         affiche_jetons(j,jeton,plateau)
                         let_util += 1
