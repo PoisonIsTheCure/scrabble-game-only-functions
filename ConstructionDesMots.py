@@ -1,10 +1,11 @@
 #1
-def generer_dico(nf):
+f = 'littre.txt'
+def generer_dico():
     """
     fonction reçois le nom de ficher et
     rnvoie un liste de son contenu
     """
-    fichier = open(nf,"r")
+    fichier = open(f,"r")
     dictionnaire = []
     for ligne in fichier:
         mot = ligne[:-1]

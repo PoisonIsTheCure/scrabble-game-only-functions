@@ -51,7 +51,6 @@ def piocher(x,sac):
     for i in range (x):
         a=randint(0,len(sac)-1)
         main.append(sac.pop(a))
-    print(sac)
     return main
 #4
 def completer_main(main,sac):
@@ -102,34 +101,4 @@ def cree_joueurs(i,sac):
     joueur["tour"] = False
     return joueur
 
-'''
-#sac=init_pioche(init_dico())
-sac = init_pioche(init_dico())
-print(len(sac))
-print(sac)
-#main = piocher(7,sac)
-#main=['A','C']
-#jetons = ['A','D']
-#echanger(jetons,main,sac)
-joueurs = cree_joueurs(2,sac)
-print(joueurs)
-print(sac)
-print(len(sac))
-'''
-
 #Tous les fonction on étaient testés et tout va bien
-
-"""
-def echanger(jetons,main,sac):
-
-    if jetons[0] in main:
-        main.remove(jetons[0])
-        a=random.randint(0,len(sac)-1)
-        main.append(sac[a])
-
-        sac.append(jetons[0])
-    else:
-        print("111")
-sac=init_pioche(init_dico())
-print(echanger(["A"],["X","E","A"],sac))
-"""

@@ -8,8 +8,11 @@ import Boucle_De_Jeu as bdj
 
 def principal():
     registre = {}
+    lplateau = plt.init_jetons()
     dico = pio.init_dico()
     sac = pio.init_pioche(dico)
+    #sac = ['A', 'A', 'E', 'E', 'E', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
+    #lplateau
     print(sac)
     while True:
         nb_joueur = int(input("Quelle est le nombre des joueurs (2-4): "))
@@ -18,5 +21,17 @@ def principal():
         registre[i] = pio.cree_joueurs(i,sac)
     print(registre)
     print(sac)
+    while True:
+        joueur = bdj.detect_tour(registre)
+        nom = registre[joueur]["nom"]
+        main = registre[joueur]["main"]
+        fini = bdj.fin_partie(sac,main)
+        print(sac)
+        if fini : break
+        pio.completer_main(main,sac)
+        bdj.tour_joueur(lplateau , sac , main, nom)
+        print(registre[joueur])
+    print("FIN DE LA PARTIE!!!")
+
 
 principal()

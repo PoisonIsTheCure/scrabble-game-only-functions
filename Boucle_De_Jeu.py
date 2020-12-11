@@ -33,10 +33,12 @@ def tour_joueur(lplateau , sac , main, nom):
     #lplateau=plt.affiche_plateau(list_plateau)
     #sac=pio.init_pioche(pio.init_dico())
     #main=pio.piocher(7,sac)
-    affiche_plateau(lplateau)
+    plt.affiche_plateau(lplateau)
+    print(f"C'est le tour de {nom} :")
     print("Les lettres dans votre main sont : ",main)
-    Q1=input("passer (s), echanger (e), placer (p) ? ")
-    if (Q1.lower() == "echange") or "e":
+    Q1=input("passer (s), echanger (e), placer (p) ? : ")
+    Q1 = Q1.lower()
+    if Q1 in ("echange" , "e"):
         while True:
             jetons_list=[]
             jetons = input("Ecrivez les jetons que vous souhaitez les echanger\nseparez les par des virgules : ")
@@ -48,38 +50,39 @@ def tour_joueur(lplateau , sac , main, nom):
             if echange : break
         print(main)
         #la partie echange est bien vérifier
-    elif (Q1.lower()== "placer") or "p":
+    elif Q1 in ("placer" , "p"):
         while True:
             coords = pdm.lire_coords()
             ligne = coords[0]
             colone = coords[1]
             mot = input("Quelle mot voulez vous placer : ")
+            mot = mot.upper()
             dir = input("direction vertical (v) ou horizontal (h) ? : ")
             if dir == 'vertical' : dir = 'v'
             if dir == 'horizontal': dir = 'h'
             placer = pdm.placer_mot(lplateau,main,mot,colone,ligne,dir)
             if placer : break
-            print(placer)
+            print("valeur retourner par placer en tour_joueur: ",placer)
         #partie placer verifier
-    elif (Q1.lower()== "passer") or "s":
+    elif Q1 in ("passer" , "s"):
         pass
 
 #fonction qui détecte la fin de la partie
 def fin_partie(sac,lm):
     '''
-    Fonction renvoie True tant que le sac est suffisant
-    est False le sac est insuffisant
+    Fonction renvoie False tant que le sac est suffisant
+    est True le sac est insuffisant
     '''
     if len(lm) == 7 :
-        return True
+        return False
     else:
         besoin = 7 - len(lm)
         if besoin > len(sac):
-            return False
-        else:
             return True
+        else:
+            return False
 
-def tour_joueur(registre):
+def detect_tour(registre):
     tous_false = True
     for i in range(len(registre.keys())):
         statut = registre[i]["tour"]

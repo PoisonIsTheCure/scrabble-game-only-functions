@@ -1,3 +1,4 @@
+import ConstructionDesMots as cdm
 def valeur_mot(mot,dico):
     mot=mot.upper()
     mot=list(mot)
@@ -16,7 +17,7 @@ def valeur_mot(mot,dico):
 def meilleur_mot(motsfr,ll,dico):
     haut_valeur=0
     meilleur=[]
-    ljouable=mots_jouables(motsfr,ll)
+    ljouable = cdm.mots_jouables(motsfr,ll)
 
     for i in range (len(ljouable)):
         valeur=valeur_mot(ljouable[i],dico)
