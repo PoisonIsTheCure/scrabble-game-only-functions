@@ -2,6 +2,7 @@ import plateau as plt
 import pioche as pio
 import PlacementDeMot as pdm
 import valeur_dun_mot as vdm
+import VariablesGlobales as vg
 """
 def tour_joueur(lplateau , sac , main):
     #list_plateau=plt.init_jetons()
@@ -31,10 +32,11 @@ def tour_joueur(lplateau , sac , main):
 """
 def DemanderDirection():
     while True:
+        global dir
         dir = input("direction vertical (v) ou horizontal (h) ? : ")
         if dir == 'vertical' : dir = 'v'
         if dir == 'horizontal': dir = 'h'
-        if dir in ('j','h') : break
+        if dir in ('v','h') : break
     return dir
 
 def EchangerLesJetons(main, sac):
@@ -45,7 +47,7 @@ def EchangerLesJetons(main, sac):
     jetons_list = jetonsf.split(",")
     return pio.echanger(jetons_list,main,sac)
 
-def PlacementMotEtCalculScore(lplateau , main,dico):
+def PlacementMotEtCalculScore(lplateau , main,joueur,dico):
     coords = pdm.lire_coords()
     ligne = coords[0]
     colonne = coords[1]
@@ -55,10 +57,12 @@ def PlacementMotEtCalculScore(lplateau , main,dico):
     PlacementReussit = pdm.placer_mot(lplateau,main,mot,colonne,ligne,dir)
     if PlacementReussit:
         global tempscore
-        tempscore = vdm.valeur_mot(mot,dico,ligne,colonne)
+        vg.registre[joueur]["score"] += vdm.valeur_mot(mot,dico,ligne,colonne,dir)
     return PlacementReussit
 
-def tour_joueur(lplateau , sac , main, nom,dico):
+def tour_joueur(lplateau , sac , joueur,dico):
+    nom = vg.registre[joueur]["nom"]
+    main = vg.registre[joueur]["main"]
     plt.affiche_plateau(lplateau)
     print(f"C'est le tour de {nom} :")
     print("Les lettres dans votre main sont : ",main)
@@ -71,7 +75,7 @@ def tour_joueur(lplateau , sac , main, nom,dico):
         print(main)
     elif Q1 in ("placer" , "p"):
         while True:
-            placer = PlacementMotEtCalculScore(lplateau,main,dico)
+            placer = PlacementMotEtCalculScore(lplateau,main,joueur,dico)
             if placer : break
             print("valeur retourner par placer en tour_joueur: ",placer)
     elif Q1 in ("passer" , "s"):

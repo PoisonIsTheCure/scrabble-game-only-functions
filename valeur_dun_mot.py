@@ -1,6 +1,9 @@
 import ConstructionDesMots as cdm
 import plateau as plt
 import PlacementDeMot as pdm
+import VariablesGlobales as vg
+import Boucle_De_Jeu as bdj
+
 
 def LettreDoubleOuTriple(ligne,colonne,valeur):
     """
@@ -10,9 +13,9 @@ def LettreDoubleOuTriple(ligne,colonne,valeur):
     list_bonus = plt.init_bonus()
     pos = [ligne,colonne]
     if pos in list_bonus[2]: #verifie si lettre est double
-        return 2*valeur
-    elif pos in list_bonus[3]: #verifie lettre triple
         return 3*valeur
+    elif pos in list_bonus[3]: #verifie lettre triple
+        return 2*valeur
     else:
         return valeur
 
@@ -24,13 +27,13 @@ def MotDoubleOuTriple(ligne,colonne):
     list_bonus = plt.init_bonus()
     pos = [ligne,colonne]
     if pos in list_bonus[0]: #verifie si mot est double
-        return 2
-    elif pos in list_bonus[1]: #verifie mot triple
         return 3
+    elif pos in list_bonus[1]: #verifie mot triple
+        return 2
     else:
         return 1
 
-def valeur_mot(mot,dico,ligne=101,colonne=101):
+def valeur_mot(mot,dico,ligne=101,colonne=101,dir='h'):
     """
     Cette fonction calcule la valeur du mot seule,
     si elle reçoit des cooredonnées , elles le calcules avec bonus et cases spécialles
@@ -55,6 +58,10 @@ def valeur_mot(mot,dico,ligne=101,colonne=101):
                 valeur=dico[mot[i]]["val"]
                 somme += LettreDoubleOuTriple(ligne,colonne,valeur)
                 MultiplierMot *= MotDoubleOuTriple(ligne,colonne)
+                print(somme)
+                print(MultiplierMot)
+            if bdj.dir == 'h': colonne += 1
+            if bdj.dir == 'v': ligne += 1
         ResultatFinal = somme*MultiplierMot
         return ResultatFinal
 
