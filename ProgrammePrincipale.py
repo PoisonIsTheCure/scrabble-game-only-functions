@@ -29,7 +29,7 @@ def principal():
         print(sac)
         if fini : break
         pio.completer_main(main,sac)
-        bdj.tour_joueur(lplateau , sac , main, nom)
+        bdj.tour_joueur(lplateau , sac , main, nom,dico)
         print(registre[joueur])
     print("FIN DE LA PARTIE!!!")
 

@@ -1,6 +1,7 @@
 import plateau as plt
 import pioche as pio
 import PlacementDeMot as pdm
+import valeur_dun_mot as vdm
 """
 def tour_joueur(lplateau , sac , main):
     #list_plateau=plt.init_jetons()
@@ -36,31 +37,41 @@ def DemanderDirection():
         if dir in ('j','h') : break
     return dir
 
-def tour_joueur(lplateau , sac , main, nom):
+def EchangerLesJetons(main, sac):
+    jetons_list=[]
+    jetons = input("Ecrivez les jetons que vous souhaitez les echanger\nseparez les par des virgules : ")
+    jetons = jetons.upper()
+    jetonsf = jetons.replace(' ','')
+    jetons_list = jetonsf.split(",")
+    return pio.echanger(jetons_list,main,sac)
+
+def PlacementMotEtCalculScore(lplateau , main,dico):
+    coords = pdm.lire_coords()
+    ligne = coords[0]
+    colonne = coords[1]
+    mot = input("Quelle mot voulez vous placer : ")
+    mot = mot.upper()
+    dir = DemanderDirection()
+    PlacementReussit = pdm.placer_mot(lplateau,main,mot,colonne,ligne,dir)
+    if PlacementReussit:
+        global tempscore
+        tempscore = vdm.valeur_mot(mot,dico,ligne,colonne)
+    return PlacementReussit
+
+def tour_joueur(lplateau , sac , main, nom,dico):
     plt.affiche_plateau(lplateau)
     print(f"C'est le tour de {nom} :")
     print("Les lettres dans votre main sont : ",main)
     Q1=input("passer (s), echanger (e), placer (p) ? : ")
     Q1 = Q1.lower()
-    if Q1 in ("echange" , "e"):
+    if Q1 in ("echanger" , "e"):
         while True:
-            jetons_list=[]
-            jetons = input("Ecrivez les jetons que vous souhaitez les echanger\nseparez les par des virgules : ")
-            jetons = jetons.upper()
-            jetonsf = jetons.replace(' ','')
-            jetons_list = jetonsf.split(",")
-            echange = pio.echanger(jetons_list,main,sac)
+            echange = EchangerLesJetons(main, sac)
             if echange : break
         print(main)
     elif Q1 in ("placer" , "p"):
         while True:
-            coords = pdm.lire_coords()
-            ligne = coords[0]
-            colone = coords[1]
-            mot = input("Quelle mot voulez vous placer : ")
-            mot = mot.upper()
-            dir = DemanderDirection()
-            placer = pdm.placer_mot(lplateau,main,mot,colone,ligne,dir)
+            placer = PlacementMotEtCalculScore(lplateau,main,dico)
             if placer : break
             print("valeur retourner par placer en tour_joueur: ",placer)
     elif Q1 in ("passer" , "s"):

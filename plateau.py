@@ -14,6 +14,7 @@ def init_bonus():
     """
     lbonus = [cases_MT,cases_MD,cases_LT,cases_LD] # initiation d'une liste contenant les listes des jitions des bonus
     return lbonus
+
 def CreationDuPlateauVide():
     return [["   " for i in range(15)] for j in range(15)]
 

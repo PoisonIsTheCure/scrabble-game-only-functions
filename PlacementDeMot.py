@@ -25,10 +25,10 @@ def lire_lettre(y,x,plateau):
     print("la lettre lit par fonction lire_lettre = ",recentstr)
     return recentstr
 
-def lire_mot(plateau,x,y,mot,dirbool): #i c'
+def lire_mot(plateau,x,y,mot,dir): #i c'
     lenmot = len(mot)
     motpl = []
-    if dirbool: #cas horizental
+    if dir == 'h': #cas horizental
         print(len(plateau[y]) - x)
         print(lenmot)
         if (len(plateau[y]) - x) < lenmot :
@@ -36,7 +36,7 @@ def lire_mot(plateau,x,y,mot,dirbool): #i c'
         for index in range(lenmot):
             motpl.append(lire_lettre(y,x,plateau))
             x+=1
-    elif not(dirbool): #cas vertical
+    elif dir == 'v': #cas vertical
         if (len(plateau) - y) < lenmot :
             return 0
         for index in range(lenmot):
@@ -61,11 +61,7 @@ def tester_placement(plateau,i,j,dir,mot):
     mot.upper()
     lmot = []
     acceptee = True
-    if dir == 'h':
-        dirbool = True
-    if dir == 'v':
-        dirbool = False
-    motexistant = lire_mot(plateau,i,j,mot,dirbool)
+    motexistant = lire_mot(plateau,i,j,mot,dir)
     print("valeur retourner par lire_mot en tester_placement: ",motexistant)
     if motexistant != 0 :
         for index in range(len(motexistant)) :
