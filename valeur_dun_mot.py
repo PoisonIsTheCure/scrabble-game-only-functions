@@ -10,13 +10,20 @@ def LettreDoubleOuTriple(ligne,colonne,valeur):
     verifie si un lettre est sur une position LT ou LD
     puis renvoi la valeur multiplier, sinon renvoi même valeur
     """
-    list_bonus = plt.init_bonus()
     pos = [ligne,colonne]
-    if pos in list_bonus[2]: #verifie si lettre est double
+    if pos in vg.lbonus[2]: #verifie si lettre est double
+        if vg.PosPremierJocker == pos :
+            print("Its the jocker")
+            return 0
+        if vg.PosDeuxiemeJocker == pos : return 0
         return 3*valeur
-    elif pos in list_bonus[3]: #verifie lettre triple
+    elif pos in vg.lbonus[3]: #verifie lettre triple
+        if vg.PosPremierJocker == pos : return 0
+        if vg.PosDeuxiemeJocker == pos : return 0
         return 2*valeur
     else:
+        if vg.PosPremierJocker == pos : return 0
+        if vg.PosDeuxiemeJocker == pos : return 0
         return valeur
 
 def MotDoubleOuTriple(ligne,colonne):
@@ -24,11 +31,10 @@ def MotDoubleOuTriple(ligne,colonne):
     verifie si le mot est sur une position MT ou MD
     puis renvoi la valeur de multiplication, sinon renvoi 1
     """
-    list_bonus = plt.init_bonus()
     pos = [ligne,colonne]
-    if pos in list_bonus[0]: #verifie si mot est double
+    if pos in vg.lbonus[0]: #verifie si mot est double
         return 3
-    elif pos in list_bonus[1]: #verifie mot triple
+    elif pos in vg.lbonus[1]: #verifie mot triple
         return 2
     else:
         return 1

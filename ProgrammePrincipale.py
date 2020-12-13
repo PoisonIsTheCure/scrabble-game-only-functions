@@ -9,10 +9,11 @@ import VariablesGlobales as vg
 
 def principal():
     vg.init_registre()
+    vg.init_bonus()
     lplateau = plt.init_jetons()
     dico = pio.init_dico()
-    sac = pio.init_pioche(dico)
-    #sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
+    #sac = pio.init_pioche(dico)
+    sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
     #lplateau
     print(sac)
     while True:

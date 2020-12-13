@@ -1,2 +1,3 @@
-1- Ajout de Bonus a faire
-2- Elimination de '?' après sont utilisation
+1- "?" n'a pas de bonus <<>> Résolut
+2- fonction lorsqu'on termine
+3- Afficher le score

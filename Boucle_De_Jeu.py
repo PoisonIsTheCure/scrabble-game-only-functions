@@ -65,6 +65,7 @@ def tour_joueur(lplateau , sac , joueur,dico):
     main = vg.registre[joueur]["main"]
     plt.affiche_plateau(lplateau)
     print(f"C'est le tour de {nom} :")
+    print(f"Votre Score est de {vg.registre[joueur]['score']} points.")
     print("Les lettres dans votre main sont : ",main)
     Q1=input("passer (s), echanger (e), placer (p) ? : ")
     Q1 = Q1.lower()
@@ -77,7 +78,7 @@ def tour_joueur(lplateau , sac , joueur,dico):
         while True:
             placer = PlacementMotEtCalculScore(lplateau,main,joueur,dico)
             if placer : break
-            print("valeur retourner par placer en tour_joueur: ",placer)
+            #print("valeur retourner par placer en tour_joueur: ",placer)
     elif Q1 in ("passer" , "s"):
         pass
 
