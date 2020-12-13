@@ -58,5 +58,3 @@ dictio = generer_dico(f)
 #print(dictio[0:30])
 print(mots_jouables(dictio, ll))
 '''
-
-# TOUT LES FONCTIONS AU DESSUS ON ETAIENT TESTÉE

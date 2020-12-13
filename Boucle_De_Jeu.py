@@ -3,33 +3,7 @@ import pioche as pio
 import PlacementDeMot as pdm
 import valeur_dun_mot as vdm
 import VariablesGlobales as vg
-"""
-def tour_joueur(lplateau , sac , main):
-    #list_plateau=plt.init_jetons()
-    #lplateau=plt.affiche_plateau(list_plateau)
-    #sac=pio.init_pioche(pio.init_dico())
-    main=pio.piocher(7,sac)
-    print(main)
-    Q1.lower()=input("passer,echange,placer ? ")
-    if Q1.lower()=="echange":
-        jetons_list=[]
-        nb_jeton=int(input("combien des jetons vous voulez echange"))
-        for i in range(nb_jeton):
-            jetons=input("choisir un jeton")
-            jetons_list.append(jetons)
-        echange=pio.echanger(jetons_list,main,sac)
-        print(main)
-    elif Q1.lower()=="placer":
-        mot=input("entrez un mot : ")
-        ligne=int(input("ligne de depart ? "))
-        colone=int(input("colone de depart ? "))
-        dir=input("v ou h ? ")
-        placer=pdm.placer_mot(lplateau,main,mot,ligne,colone,dir)
-        print(placer)
-    elif Q1.lower()=="passer":
-        pass
-#print(tour_joueur())
-"""
+
 def DemanderDirection():
     while True:
         global dir
@@ -78,12 +52,10 @@ def tour_joueur(lplateau , sac , joueur,dico):
         while True:
             echange = EchangerLesJetons(main, sac)
             if echange : break
-        print(main)
     elif Q1 in ("placer" , "p"):
         while True:
             placer = PlacementMotEtCalculScore(lplateau,main,joueur,dico)
             if placer : break
-            #print("valeur retourner par placer en tour_joueur: ",placer)
     elif Q1 in ("passer" , "s"):
         pass
 
@@ -157,5 +129,5 @@ def FonctionDeFin(sac,plateau):
         print(f"Les lettres restants dans la main de {nom} : {main}")
         print(f"Le score de {nom} est : {score}")
         if score == Gangant:
-            print(f"~~~~~~{nom} A GAGNER LA PARTIE!!!~~~~~~")
+            print(f"~~~~~~{nom} A GAGNE LA PARTIE!!!~~~~~~")
         print("--------------------------------------------------")

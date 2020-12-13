@@ -1,10 +1,6 @@
 import VariablesGlobales as vg
 #Première partie du programme
 
-#plateau = [["   " for i in range(15)] for j in range(15)] #Création du plateau avec des espaces
-
-
-
 def CreationDuPlateauVide():
     return [["   " for i in range(15)] for j in range(15)]
 
@@ -32,9 +28,6 @@ def VerifierLongueur(i): #verifie que la longueur du chaine du caractère est co
 
 def affiche_jetons(j,jeton,lplateau):
     lettre = jeton
-    #j'ai changer la place de bonus (deplacer vers init_jetons()) affichee car elle n'étaient pad demandés dans la consigne
-    #on considera même d'enlever les mot MT , MD , LT , LD pour diminuer le confusion
-    #il n'est pas bien déterminer le but de cette fonction
     if j in vg.cases_MT :
         lplateau[j[0]][j[1]]= VerifierLongueur(f"*{lettre}*")
     elif j in vg.cases_MD :
@@ -45,7 +38,6 @@ def affiche_jetons(j,jeton,lplateau):
         lplateau[j[0]][j[1]]= VerifierLongueur(f" {lettre}-")
     else:
         lplateau[j[0]][j[1]]= VerifierLongueur(lettre)
-    #J'ai changer la methode d'affichage des bonus pour qu'ils soient mieux lisibles
     return lplateau
 
 

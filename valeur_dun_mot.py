@@ -14,10 +14,12 @@ def LettreDoubleOuTriple(ligne,colonne,valeur):
     if pos in vg.lbonus[2]: #verifie si lettre est double
         if vg.PosPremierJocker == pos : return 0
         if vg.PosDeuxiemeJocker == pos : return 0
+        vg.lbonus[2].remove(pos)
         return 3*valeur
     elif pos in vg.lbonus[3]: #verifie lettre triple
         if vg.PosPremierJocker == pos : return 0
         if vg.PosDeuxiemeJocker == pos : return 0
+        vg.lbonus[3].remove(pos)
         return 2*valeur
     else:
         if vg.PosPremierJocker == pos : return 0
@@ -31,8 +33,10 @@ def MotDoubleOuTriple(ligne,colonne):
     """
     pos = [ligne,colonne]
     if pos in vg.lbonus[0]: #verifie si mot est double
+        vg.lbonus[0].remove(pos)
         return 3
     elif pos in vg.lbonus[1]: #verifie mot triple
+        vg.lbonus[1].remove(pos)
         return 2
     else:
         return 1
@@ -67,8 +71,6 @@ def valeur_mot(mot,dico,ligne=101,colonne=101,dir='h'):
         ResultatFinal = somme*MultiplierMot
         return ResultatFinal
 
-#dico=init_dico()
-#print(valeur_mot("amine",dico))
 
 def meilleur_mot(motsfr,ll,dico,ligne,colonne):
     haut_valeur=0
@@ -86,5 +88,3 @@ def meilleur_mot(motsfr,ll,dico,ligne,colonne):
             meilleur.append(ljouable[i])
 
     return meilleur
-#dico=init_dico()
-#print(meilleur_mot(["courir","pied","depit","tapir","marcher"],["P","I","D","E","T","A","R"],dico))

@@ -4,6 +4,11 @@ import ConstructionDesMots as cdm
 import VariablesGlobales as vg
 #1
 def lire_coords():
+    """Fonction qui lit les coordonnées sur le plateau
+
+    Returns:
+        int: [renvoie une liste des coordonnées y : ligne et x: colonne]
+    """
     while True:
         y = input("A Quelle ligne voulez vous commencer : ")
         x = input("A Quelle colonne : ")
@@ -14,24 +19,28 @@ def lire_coords():
     return y,x
 #2
 def lire_lettre(y,x,plateau):
+    """Cette fonction reçoit les cooredonnées et lit la lettre sur le plateau
+
+    Args:
+        y (int): ligne
+        x (int): colonne
+        plateau (liste): plateau initiale
+
+    Returns:
+        string: renvoi la lettre lut sans les * et - et les ecpaces
+    """    
     ligne = y
     colonne = x
-    #print("ligne en fonction lire_lettre = ",ligne)
-    #print("colonne en fonction lire_lettre = ",colonne)
     lettre = plateau[ligne][colonne]
-    #print("la lettre lit par fonction lire_lettre avant enlever les choses = ",lettre)
     newstr = lettre.replace(' ','')
     thenewstr = newstr.replace('*','')
     recentstr = thenewstr.replace('-','')
-    #print("la lettre lit par fonction lire_lettre = ",recentstr)
     return recentstr
 
 def lire_mot(plateau,x,y,mot,dir): #i c'
     lenmot = len(mot)
     motpl = []
     if dir == 'h': #cas horizental
-        print(len(plateau[y]) - x)
-        print(lenmot)
         if (len(plateau[y]) - x) < lenmot :
             return 0
         for index in range(lenmot):
@@ -43,19 +52,22 @@ def lire_mot(plateau,x,y,mot,dir): #i c'
         for index in range(lenmot):
             motpl.append(lire_lettre(y,x,plateau))
             y+=1
-        #print(f"liste donnée par lire_mot : {motpl}")
+    if not(vg.PremierTour):
+        ToutElementsVides = True
+        for elt in motpl:
+            if len(elt) != 0 : ToutElementsVides = False
+        if ToutElementsVides :
+            print("Votre mot doit au moins passée par un lettre déjà existant !")
+            return 0
     return motpl
 
-#ajouté par moi
 def verifie_mot(mot,lmotexistant):
     mot.upper()
-    #print("LMOTEXISTANT dans verifie_mot : ",lmotexistant)
     lmot = list(mot)
     lmot.extend(lmotexistant)
     dict_fr = cdm.generer_dico()
     mots_possibles = cdm.mots_jouables(dict_fr, lmot)
     return True if mot in mots_possibles else False
-    #a utiliser dans le fonction placer mot
     
 
 def tester_placement(plateau,i,j,dir,mot):
@@ -63,7 +75,7 @@ def tester_placement(plateau,i,j,dir,mot):
     lmot = []
     acceptee = True
     motexistant = lire_mot(plateau,i,j,mot,dir)
-    #print("valeur retourner par lire_mot en tester_placement: ",motexistant)
+    VerifieSiLePremierMotPassParLeCentre(mot,dir,j,i)
     if motexistant != 0 :
         for index in range(len(motexistant)) :
             if motexistant[index] == "" :
@@ -72,7 +84,7 @@ def tester_placement(plateau,i,j,dir,mot):
                 continue
             else:
                 acceptee = False
-    if acceptee and motexistant!=0:
+    if acceptee and motexistant!=0 and not(vg.PremierTour):
         return lmot
     else:
         return []
@@ -91,7 +103,7 @@ def verifie_main(main,liste_lettres):
     return True
 
 def EnleverLesJetonsDeLaMain(jeton, lm,ligne,colonne):
-    if not(jeton in lm): #modifications pour pouvoir enlever "?"
+    if not(jeton in lm):
         if '?' in lm:
             lm.remove("?")
             if len(vg.PosPremierJocker) == 0:
@@ -100,17 +112,30 @@ def EnleverLesJetonsDeLaMain(jeton, lm,ligne,colonne):
                 vg.PosDeuxiemeJocker.extend([ligne, colonne])
     else:
         lm.remove(jeton)
-def VerifierSiLeMotDuPremierTour(ligne,colonne,plateau):
-    if vg.PremierTour :
+
+def VerifierSiPositionAuCentre(ligne,colonne):
+    pos = [ligne,colonne]
+    if vg.PremierTour and pos == [7,7]:
+        vg.PremierTour = False
+
+def VerifieSiLePremierMotPassParLeCentre(mot,dir,ligne,colonne):
+    if dir == 'h':
+        for i in range(len(mot)):
+            VerifierSiPositionAuCentre(ligne,colonne)
+            colonne += 1
+    else:
+        for i in range(len(mot)):
+            VerifierSiPositionAuCentre(ligne,colonne)
+            ligne += 1
+    if vg.PremierTour:
+        print("Le mot doit passer par le point centrale du tableau (7,7) !")
 
 def placer_mot(plateau,lm,mot,i,j,dir):
     x = i
     y = j
     liste_lettres = tester_placement(plateau,x,y,dir,mot) # liste_lettres contient les lettres dont on est besoin
-    #print("valeur retourner par liste lettres en placer_mot: ",liste_lettres)
     mot_valide = verifie_mot(mot,liste_lettres)
     verifier_main = verifie_main(lm,liste_lettres) 
-    #print("valeur retourner par verifier main en placer_mot: ",verifier_main)
     let_util = 0
     while mot_valide:
         if len(liste_lettres) != 0 and verifier_main:

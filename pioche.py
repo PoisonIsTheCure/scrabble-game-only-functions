@@ -29,7 +29,6 @@ def completer_main(main,sac):
         x = 7-len(main)
         liste = piocher(x,sac)
         main.extend(liste)
-    return main
 
 #5
 def echanger(jetons ,main, sac):
