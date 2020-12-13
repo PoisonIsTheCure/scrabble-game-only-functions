@@ -146,7 +146,9 @@ def FonctionDeFin(sac,plateau):
     plt.affiche_plateau(plateau)
     print(f"Les Lettres restant dans le sac sont : {sac}")
     SoustractionDesScores()
-    ScoreJoueurs = [int(valeur) for joueur in vg.registre.keys() for valeur in str(vg.registre[joueur]['score'])]
+    ScoreJoueurs = []
+    for joueur in vg.registre.keys():
+        ScoreJoueurs.append(vg.registre[int(joueur)]['score'])
     Gangant = max(ScoreJoueurs)
     for joueur in range(len(vg.registre)):
         nom = vg.registre[joueur]["nom"]

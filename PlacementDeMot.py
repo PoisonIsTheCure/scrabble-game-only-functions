@@ -100,6 +100,8 @@ def EnleverLesJetonsDeLaMain(jeton, lm,ligne,colonne):
                 vg.PosDeuxiemeJocker.extend([ligne, colonne])
     else:
         lm.remove(jeton)
+def VerifierSiLeMotDuPremierTour(ligne,colonne,plateau):
+    if vg.PremierTour :
 
 def placer_mot(plateau,lm,mot,i,j,dir):
     x = i

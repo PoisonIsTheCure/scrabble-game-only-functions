@@ -37,5 +37,5 @@ def principal():
     print("###---FIN DE LA PARTIE!!!---###")
     bdj.FonctionDeFin(sac,lplateau)
 
-
+#help(pio)
 principal()

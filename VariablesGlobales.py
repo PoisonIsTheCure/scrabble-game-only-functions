@@ -50,3 +50,5 @@ def init_dico():
           "?": {"occ": 2, "val": 0},
     }
     return dico
+
+PremierTour = True
