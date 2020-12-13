@@ -12,9 +12,7 @@ def LettreDoubleOuTriple(ligne,colonne,valeur):
     """
     pos = [ligne,colonne]
     if pos in vg.lbonus[2]: #verifie si lettre est double
-        if vg.PosPremierJocker == pos :
-            print("Its the jocker")
-            return 0
+        if vg.PosPremierJocker == pos : return 0
         if vg.PosDeuxiemeJocker == pos : return 0
         return 3*valeur
     elif pos in vg.lbonus[3]: #verifie lettre triple
@@ -64,9 +62,7 @@ def valeur_mot(mot,dico,ligne=101,colonne=101,dir='h'):
                 valeur=dico[mot[i]]["val"]
                 somme += LettreDoubleOuTriple(ligne,colonne,valeur)
                 MultiplierMot *= MotDoubleOuTriple(ligne,colonne)
-                print(somme)
-                print(MultiplierMot)
-            if bdj.dir == 'h': colonne += 1
+            if bdj.dir == 'h': colonne += 1 # On Change ligne ou colonne pour pouvoir verifier la position et donner le bonus convenable
             if bdj.dir == 'v': ligne += 1
         ResultatFinal = somme*MultiplierMot
         return ResultatFinal

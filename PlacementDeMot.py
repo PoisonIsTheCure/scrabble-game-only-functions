@@ -86,6 +86,7 @@ def verifie_main(main,liste_lettres):
         elif "?" in lmain:
             lmain.remove("?")
         else:
+            print("La main est insuffisante!!!")
             return False
     return True
 

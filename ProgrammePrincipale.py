@@ -11,9 +11,10 @@ def principal():
     vg.init_registre()
     vg.init_bonus()
     lplateau = plt.init_jetons()
-    dico = pio.init_dico()
+    dico = vg.init_dico()
     #sac = pio.init_pioche(dico)
-    sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
+    #sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
+    sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T']
     #lplateau
     print(sac)
     while True:
@@ -23,8 +24,6 @@ def principal():
             if 2<=nb_joueur<=4 : break
     for i in range(nb_joueur):
         vg.registre[i] = pio.cree_joueurs(i,sac)
-    print(vg.registre)
-    print(sac)
     while True:
         joueur = bdj.detect_tour(vg.registre)
         nom = vg.registre[joueur]["nom"]
@@ -35,7 +34,8 @@ def principal():
         pio.completer_main(main,sac)
         bdj.tour_joueur(lplateau , sac ,joueur,dico)
         print(vg.registre[joueur])
-    print("FIN DE LA PARTIE!!!")
+    print("###---FIN DE LA PARTIE!!!---###")
+    bdj.FonctionDeFin(sac,lplateau)
 
 
 principal()

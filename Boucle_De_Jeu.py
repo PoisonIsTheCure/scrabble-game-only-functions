@@ -51,7 +51,9 @@ def PlacementMotEtCalculScore(lplateau , main,joueur,dico):
     coords = pdm.lire_coords()
     ligne = coords[0]
     colonne = coords[1]
-    mot = input("Quelle mot voulez vous placer : ")
+    while True:
+        mot = input("Quelle mot voulez vous placer : ")
+        if mot.isalpha() : break
     mot = mot.upper()
     dir = DemanderDirection()
     PlacementReussit = pdm.placer_mot(lplateau,main,mot,colonne,ligne,dir)
@@ -67,7 +69,10 @@ def tour_joueur(lplateau , sac , joueur,dico):
     print(f"C'est le tour de {nom} :")
     print(f"Votre Score est de {vg.registre[joueur]['score']} points.")
     print("Les lettres dans votre main sont : ",main)
-    Q1=input("passer (s), echanger (e), placer (p) ? : ")
+    ReponsesPossibles = ("echanger" , "e","placer" , "p","passer" , "s")
+    while True:
+        Q1=input("passer (s), echanger (e), placer (p) ? : ")
+        if Q1.isalpha() and Q1 in ReponsesPossibles : break    
     Q1 = Q1.lower()
     if Q1 in ("echanger" , "e"):
         while True:
@@ -109,3 +114,46 @@ def detect_tour(registre):
     if tous_false:
         registre[1]["tour"] = True
         return 0
+
+def ChercheLaValeurDuLettre(lettre):
+    return vg.dico[lettre]["val"]
+
+def SommeDesValeurDansLaMain(joueur):
+    if len(vg.registre[joueur]['main']) == 0 : return 0
+    valeur = 0
+    for lettre in vg.registre[joueur]['main'] :
+        valeur += ChercheLaValeurDuLettre(lettre)
+    return valeur
+
+def SoustractionDesScores():
+    """
+    Fonction qui calcule les valeurs finales des joueurs, en prenon compte des lettres dans leur main
+    """
+    ListeDesValeurs = []
+    for joueur in range(len(vg.registre)):
+        ListeDesValeurs.append(SommeDesValeurDansLaMain(joueur))
+    for index in range(len(ListeDesValeurs)):
+        if ListeDesValeurs[index] == 0:
+            ValeurAjouté = 0
+            for Valeur in ListeDesValeurs:
+                if Valeur == 0:
+                    ValeurAjouté += Valeur
+            vg.registre[index]['score'] += ValeurAjouté
+        else:
+            vg.registre[index]['score'] -= ListeDesValeurs[index]
+
+def FonctionDeFin(sac,plateau):
+    plt.affiche_plateau(plateau)
+    print(f"Les Lettres restant dans le sac sont : {sac}")
+    SoustractionDesScores()
+    ScoreJoueurs = [int(valeur) for joueur in vg.registre.keys() for valeur in str(vg.registre[joueur]['score'])]
+    Gangant = max(ScoreJoueurs)
+    for joueur in range(len(vg.registre)):
+        nom = vg.registre[joueur]["nom"]
+        main = vg.registre[joueur]["main"]
+        score = vg.registre[joueur]["score"]
+        print(f"Les lettres restants dans la main de {nom} : {main}")
+        print(f"Le score de {nom} est : {score}")
+        if score == Gangant:
+            print(f"~~~~~~{nom} A GAGNER LA PARTIE!!!~~~~~~")
+        print("--------------------------------------------------")
