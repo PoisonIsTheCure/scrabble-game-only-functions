@@ -37,7 +37,10 @@ def lire_lettre(y,x,plateau):
     recentstr = thenewstr.replace('-','')
     return recentstr
 
-def lire_mot(plateau,x,y,mot,dir): #i c'
+def lire_mot(plateau,x,y,mot,dir): 
+    """
+    fonction qui lit ce qui est au même place du mot qu'on desire  ajouté
+    """
     lenmot = len(mot)
     motpl = []
     if dir == 'h': #cas horizental

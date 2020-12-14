@@ -4,6 +4,9 @@ from random import randint
 
 #2
 def init_pioche(dico):
+    """
+    fonction qui initie la pioche (sac) qui contient tout les lettres
+    """
     l = []
     dk=list(dico.keys())
     dv=list(dico.values())
@@ -11,13 +14,16 @@ def init_pioche(dico):
         for j in range(dv[i]['occ']):
             l.append(dk[i])
     return l
-#print(init_pioche(init_dico()))
+
 
 
 
 
 #3
 def piocher(x,sac):
+    """
+    La fonction enleve x jetons aléatoire du sac et les ajoutent dans la main
+    """
     main=[]
     for i in range (x):
         a=randint(0,len(sac)-1)
@@ -25,6 +31,9 @@ def piocher(x,sac):
     return main
 #4
 def completer_main(main,sac):
+    """
+    complete la main si elle a moins que 7 jetons en utilisant la fonction piocher
+    """
     if len(main)<7 :
         x = 7-len(main)
         liste = piocher(x,sac)
@@ -32,6 +41,10 @@ def completer_main(main,sac):
 
 #5
 def echanger(jetons ,main, sac):
+    """
+    Fonction qui echange les jetons choisi de la main par des autres du sac,
+    elle renvoir true si l'echange est fait avec succée 
+    """
     existe = True
     sacsuff = True
     for elt in jetons:
@@ -72,5 +85,3 @@ def cree_joueurs(i,sac):
     joueur["main"]= main
     joueur["tour"] = False
     return joueur
-
-#Tous les fonction on étaient testés et tout va bien

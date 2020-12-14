@@ -1,6 +1,10 @@
 import json
 
 def init_registre():
+    """
+    Fonction qui initie le registre contenant tout les infos a propos des joueurs 
+    declare le registre comme global pour que tout les fonctions puissent y acceder
+    """
     global registre
     registre = {}
 
@@ -22,6 +26,9 @@ PosPremierJocker = []
 PosDeuxiemeJocker = []
 
 def init_dico():
+    """Fonction qui initie un le dictionnaire contenant les les mot, leurs
+    quantité et leurs valeurs et le renvoie
+    """
     global dico
     dico={"A":{"occ":9,"val":1},
           "B": {"occ": 2, "val": 3},
@@ -56,6 +63,11 @@ def init_dico():
 PremierTour = True
 
 def SauvegardeDeLaPartie(plateau,sac):
+    """
+    Fonction qui registre les variables et dictionnaires et listes essentiels pour le programme 
+    dans un fichier JSON
+    Note: elle adjuste le tou du joueur , pour qu'on recommence d'ou on est arreter
+    """
     for joueur in registre.keys():
         if registre[joueur]['tour'] == True:
             registre[joueur]['tour'] = False

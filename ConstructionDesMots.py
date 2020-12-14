@@ -26,7 +26,7 @@ def mot_jouable(mot, ll):
     liste = list(ll)
     existe = True
     for lettre in mot:
-        if lettre.upper() in liste : # remarque : les lettres dans la liste doivent etre upper
+        if lettre.upper() in liste :
             liste.remove(lettre.upper())
         elif '?' in liste:
             liste.remove('?')
