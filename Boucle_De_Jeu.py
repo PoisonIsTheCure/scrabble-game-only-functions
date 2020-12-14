@@ -43,21 +43,21 @@ def tour_joueur(lplateau , sac , joueur,dico):
     print(f"C'est le tour de {nom} :")
     print(f"Votre Score est de {vg.registre[joueur]['score']} points.")
     print("Les lettres dans votre main sont : ",main)
-    ReponsesPossibles = ("echanger" , "e","placer" , "p","passer" , "s")
     while True:
-        Q1=input("passer (s), echanger (e), placer (p) ? : ")
-        Q1 = Q1.lower()
-        if Q1.isalpha() and Q1 in ReponsesPossibles : break    
-    if Q1 in ("echanger" , "e"):
+        ReponsesPossibles = ("echanger" , "e","placer" , "p","passer" , "s")
         while True:
-            echange = EchangerLesJetons(main, sac)
-            if echange : break
-    elif Q1 in ("placer" , "p"):
-        while True:
+            Q1=input("passer (s), echanger (e), placer (p) ? : ")
+            Q1 = Q1.lower()
+            if Q1.isalpha() and Q1 in ReponsesPossibles : break    
+        if Q1 in ("echanger" , "e"):
+            while True:
+                echange = EchangerLesJetons(main, sac)
+                if echange : break
+        elif Q1 in ("placer" , "p"):
             placer = PlacementMotEtCalculScore(lplateau,main,joueur,dico)
             if placer : break
-    elif Q1 in ("passer" , "s"):
-        pass
+        elif Q1 in ("passer" , "s"):
+            pass
 
 #fonction qui détecte la fin de la partie
 def fin_partie(sac,lm):
