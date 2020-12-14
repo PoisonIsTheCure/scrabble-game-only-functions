@@ -10,7 +10,7 @@ import json
 
 def principal():
     """Cette fonction est la fonction principale , dès qu'elle est appeler elle commence
-    a appliquer les instructions
+    a appliquer les instructions , elle declenche le programme princial
     """    
     vg.init_registre()
     vg.init_bonus()
@@ -31,7 +31,6 @@ def principal():
         vg.registre[i] = pio.cree_joueurs(i,sac)
     while True:
         joueur = bdj.detect_tour(vg.registre)
-        nom = vg.registre[joueur]["nom"]
         main = vg.registre[joueur]["main"]
         fini = bdj.fin_partie(sac,main)
         if fini : break
@@ -41,15 +40,13 @@ def principal():
     bdj.FonctionDeFin(sac,lplateau)
 
 def PrincipalSauvegarde():
-    """Cette fonction est la fonction principale , dès qu'elle est appeler elle commence
-    a appliquer les instructions
+    """Cette fonction est la fonction principale alternative au premier qui reçoit les instructions du fichiers de sauvegarde
     """    
     lplateau = LePlateau
     dico = vg.init_dico()
     sac = LeSac
     while True:
         joueur = bdj.detect_tour(vg.registre)
-        nom = vg.registre[joueur]["nom"]
         main = vg.registre[joueur]["main"]
         fini = bdj.fin_partie(sac,main)
         if fini : break
@@ -59,6 +56,9 @@ def PrincipalSauvegarde():
     bdj.FonctionDeFin(sac,lplateau)
 
 def ChargementPartiePrecedente():
+    """cette fonction charge les données du fichiers 'partie-scrabble.jason' , si ce dernier n'existe pas , 
+    elle appelle la fonction principal()
+    """    
     vg.init_registre()
     vg.init_bonus()
     try:
@@ -67,7 +67,6 @@ def ChargementPartiePrecedente():
         print("^^^Pas de Partie Sauvegarder^^^")
         principal()
     vg.registre = DicoSauvegarde['registre']
-    print(vg.registre)
     listes_cles = list(vg.registre.keys())
     for key in listes_cles:
         vg.registre[int(key)] = vg.registre.pop(key)

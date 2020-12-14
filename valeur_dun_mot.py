@@ -72,7 +72,17 @@ def valeur_mot(mot,dico,ligne=101,colonne=101,dir='h'):
         return ResultatFinal
 
 
-def meilleur_mot(motsfr,ll,dico,ligne,colonne):
+def meilleur_mot(motsfr,ll,dico):
+    """Fonction qui calcule et renvoie le meilleur mot (de plus haute valeur
+telle que calculée avec valeur mot), parmi les mots autorisés de la liste motsfr
+
+    Args:
+        motsfr (liste): la liste des mots autorisés
+        ll (liste): liste des lettres
+
+    Returns:
+        string : retourne le meilleur mot
+    """    
     haut_valeur=0
     meilleur=[]
     ljouable = cdm.mots_jouables(motsfr,ll)
