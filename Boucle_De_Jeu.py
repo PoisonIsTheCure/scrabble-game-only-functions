@@ -46,8 +46,8 @@ def tour_joueur(lplateau , sac , joueur,dico):
     ReponsesPossibles = ("echanger" , "e","placer" , "p","passer" , "s")
     while True:
         Q1=input("passer (s), echanger (e), placer (p) ? : ")
+        Q1 = Q1.lower()
         if Q1.isalpha() and Q1 in ReponsesPossibles : break    
-    Q1 = Q1.lower()
     if Q1 in ("echanger" , "e"):
         while True:
             echange = EchangerLesJetons(main, sac)

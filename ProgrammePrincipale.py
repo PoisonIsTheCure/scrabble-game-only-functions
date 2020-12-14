@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import plateau as plt
 import pioche as pio
 import ConstructionDesMots as cdm
@@ -8,15 +9,17 @@ import VariablesGlobales as vg
 
 
 def principal():
+    """Cette fonction est la fonction principale , dès qu'elle est appeler elle commence
+    a appliquer les instructions
+    """    
     vg.init_registre()
     vg.init_bonus()
     lplateau = plt.init_jetons()
     dico = vg.init_dico()
-    #sac = pio.init_pioche(dico)
-    sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
+    sac = pio.init_pioche(dico)
+    #sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T', 'U', 'U', 'W', 'Z']
     #sac = ['A', 'A', '?', '?', '?', 'E', 'F', 'I', 'I', 'N', 'P', 'S', 'T', 'T']
     #lplateau
-    print(sac)
     while True:
         nb_joueur = input("Quelle est le nombre des joueurs (2-4): ")
         if nb_joueur.isdigit():
@@ -29,11 +32,9 @@ def principal():
         nom = vg.registre[joueur]["nom"]
         main = vg.registre[joueur]["main"]
         fini = bdj.fin_partie(sac,main)
-        print(sac)
         if fini : break
         pio.completer_main(main,sac)
         bdj.tour_joueur(lplateau , sac ,joueur,dico)
-        print(vg.registre[joueur])
     print("###---FIN DE LA PARTIE!!!---###")
     bdj.FonctionDeFin(sac,lplateau)
 
