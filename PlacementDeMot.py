@@ -3,6 +3,13 @@ from plateau import affiche_jetons , affiche_plateau
 import ConstructionDesMots as cdm
 import VariablesGlobales as vg
 #1
+
+#Programme Principale du Projet , à lancé le programme d'ici
+
+# Note : Ce programme a était coder sur 'Visual Studio Code'
+# Le programe a était tester sur le terminal Linux avec Python version 3.6.9 , et sur PyCharm et fonctionne bien sur les deux
+
+
 def lire_coords():
     """Fonction qui lit les coordonnées sur le plateau
 
