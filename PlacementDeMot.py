@@ -84,6 +84,7 @@ def tester_placement(plateau,i,j,dir,mot):
                 continue
             else:
                 acceptee = False
+                print("le mot est incompatible avec les lettres qui existe!!")
     if acceptee and motexistant!=0 and not(vg.PremierTour):
         return lmot
     else:

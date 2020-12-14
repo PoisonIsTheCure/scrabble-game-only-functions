@@ -1,3 +1,5 @@
+import json
+
 def init_registre():
     global registre
     registre = {}
@@ -52,3 +54,29 @@ def init_dico():
     return dico
 
 PremierTour = True
+
+def SauvegardeDeLaPartie(plateau,sac):
+    for joueur in registre.keys():
+        if registre[joueur]['tour'] == True:
+            registre[joueur]['tour'] = False
+            if joueur != 0:
+                registre[joueur-1]['tour'] == True
+            else:
+                registre[len(registre)-1]['tour'] == True
+    DicoSauvegarde = {
+        'registre': registre ,
+        'PosPremierJocker': PosPremierJocker,
+        'PosDeuxiemeJocker': PosDeuxiemeJocker,
+        'lbonus': lbonus,
+        'PremierTour': PremierTour,
+        'sac': sac,
+        'plateau':plateau
+    }
+    jsonfile = json.dumps(DicoSauvegarde)
+    with open("partie-scrabble.json", "w") as FichierDeSauvgarde:
+        FichierDeSauvgarde.write(jsonfile)
+        FichierDeSauvgarde.close()
+    print("~~~~~~Partie Sauvegarder~~~~~~")
+    quit()
+
+

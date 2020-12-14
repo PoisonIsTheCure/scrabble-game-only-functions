@@ -44,20 +44,26 @@ def tour_joueur(lplateau , sac , joueur,dico):
     print(f"Votre Score est de {vg.registre[joueur]['score']} points.")
     print("Les lettres dans votre main sont : ",main)
     while True:
-        ReponsesPossibles = ("echanger" , "e","placer" , "p","passer" , "s")
+        ReponsesPossibles = ("echanger" , "e","placer" , "p","passer" , "s","sauvegarde","sortir")
         while True:
-            Q1=input("passer (s), echanger (e), placer (p) ? : ")
+            Q1=input("Tapez 'sortir' pour sortir du Jeu\npasser (s), echanger (e), placer (p) ou 'sauvegarde' pour sauvegarder ? : ")
             Q1 = Q1.lower()
             if Q1.isalpha() and Q1 in ReponsesPossibles : break    
         if Q1 in ("echanger" , "e"):
             while True:
                 echange = EchangerLesJetons(main, sac)
                 if echange : break
+            if echange : break
         elif Q1 in ("placer" , "p"):
             placer = PlacementMotEtCalculScore(lplateau,main,joueur,dico)
             if placer : break
         elif Q1 in ("passer" , "s"):
-            pass
+            break
+        elif Q1 == "sauvegarde":
+            vg.SauvegardeDeLaPartie(lplateau,sac)
+        else:
+            print("######   AU REVOIR   ######")
+            quit()
 
 #fonction qui détecte la fin de la partie
 def fin_partie(sac,lm):
@@ -73,16 +79,16 @@ def fin_partie(sac,lm):
 
 def detect_tour(registre):
     tous_false = True
-    for i in range(len(registre.keys())):
-        statut = registre[i]["tour"]
+    for key in registre.keys():
+        statut = registre[key]["tour"]
         if statut == False:
             pass
         elif statut == True:
             div = len(registre.keys())-1 #return len of registre -1
-            registre[i]["tour"] = False
-            nouv = 0 if i == div else i+1
+            registre[key]["tour"] = False
+            nouv = 0 if key == div else int(key)+1
             registre[nouv]["tour"] = True
-            return i
+            return key
     if tous_false:
         registre[1]["tour"] = True
         return 0
