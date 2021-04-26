@@ -63,23 +63,23 @@ def ChargementPartiePrecedente():
     vg.init_bonus()
     try:
         DicoSauvegarde = json.load(open("partie-scrabble.json"))
+        vg.registre = DicoSauvegarde['registre']
+        listes_cles = list(vg.registre.keys())
+        for key in listes_cles:
+            vg.registre[int(key)] = vg.registre.pop(key)
+        vg.PosPremierJocker = DicoSauvegarde['PosPremierJocker']
+        vg.PosDeuxiemeJocker = DicoSauvegarde['PosDeuxiemeJocker']
+        vg.lbonus = DicoSauvegarde['lbonus']
+        vg.PremierTour = DicoSauvegarde['PremierTour']
+        global LeSac
+        LeSac = DicoSauvegarde['sac']
+        global LePlateau
+        LePlateau = DicoSauvegarde['plateau']
+        print("~~~~~~Partie Recharger~~~~~~")
+        PrincipalSauvegarde()
     except FileNotFoundError:
         print("^^^Pas de Partie Sauvegarder^^^")
         principal()
-    vg.registre = DicoSauvegarde['registre']
-    listes_cles = list(vg.registre.keys())
-    for key in listes_cles:
-        vg.registre[int(key)] = vg.registre.pop(key)
-    vg.PosPremierJocker = DicoSauvegarde['PosPremierJocker']
-    vg.PosDeuxiemeJocker = DicoSauvegarde['PosDeuxiemeJocker']
-    vg.lbonus = DicoSauvegarde['lbonus']
-    vg.PremierTour = DicoSauvegarde['PremierTour']
-    global LeSac
-    LeSac = DicoSauvegarde['sac']
-    global LePlateau
-    LePlateau = DicoSauvegarde['plateau']
-    print("~~~~~~Partie Recharger~~~~~~")
-    PrincipalSauvegarde()
 
 while True:
     principal()
